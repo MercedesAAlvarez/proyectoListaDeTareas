@@ -1,6 +1,6 @@
 
 const express = require('express');
-let path = require('path');
+/* let path = require('path'); */
 const app = express();
 const cors = require('cors');
 require('dotenv').config()
@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 
-let tasks = require("./tasks")
+let tasks = []
 let id= 1;
 
 /* Todas las tareas */
 
-app.get("/api/taks",(req,res)=>{
+app.get("/api/tasks",(req,res)=>{
     res.json(tasks);
     });
 
@@ -24,7 +24,7 @@ app.get("/api/taks",(req,res)=>{
 app.post("/api/tasks",(req,res)=>{
     const {title,description} =req.body;
 
-    if (tittle ===" " || description ===" "){
+    if (!title?.trim()||!description?.trim()){
     return res.status(400).json({error: "Tenes que ingresar un titulo y una descripcion"})
     }
      
@@ -44,7 +44,7 @@ app.post("/api/tasks",(req,res)=>{
    /*  Actualizar tarea */
 
    app.put("/api/tasks/:id", (req, res) => {
-    const {id} = req.params;
+    const id = Number(req.params.id);
     const {title,description,completed} = req.body;
     const taskId = tasks.findIndex(task => task.id === id);
 
@@ -52,7 +52,7 @@ app.post("/api/tasks",(req,res)=>{
       return res.status(404).json({error:" No se encontro la tarea,probá nuevamente"})
     }
 
-    if (title === undefined || description === undefined || completed === undefined) {
+    if (!title?.trim() || !description?.trim()||completed === undefined) {
      return res.status(400).json({error:"Todos los campos son obligatorios"})
     }
     
@@ -61,7 +61,7 @@ app.post("/api/tasks",(req,res)=>{
     tasks[taskId].description = description
     tasks[taskId].completed = completed
 
-    res,json(tasks[taskId]);
+    res.json(tasks[taskId]);
 
 });
 
@@ -69,13 +69,13 @@ app.post("/api/tasks",(req,res)=>{
 /* Borrar tarea */
 
 app.delete("/api/tasks/:id", (req, res) => {
-    const {id} = req.params;
+    const id = Number(req.params.id);
     const taskFind = tasks.find(task => task.id === id)
      if (taskFind === undefined){
         return res.status(404).json({error:" La Tarea no se ha encontrado o no existe"})
      }
 
-     tasks= task.filter(task => task.id != id)
+     tasks= tasks.filter(task => task.id != id)
       return res.json({message:"La tarea fue eliminada"})
 });
 
