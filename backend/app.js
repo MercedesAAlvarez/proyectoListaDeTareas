@@ -2,13 +2,15 @@
 const express = require('express');
 let path = require('path');
 const app = express();
+const cors = require('cors');
+require('dotenv').config()
 const port = 3017;
 
-
+app.use(cors());
 app.use(express.json());
 
 
-let tasks =[];
+let tasks = require("./tasks")
 let id= 1;
 
 /* Todas las tareas */
