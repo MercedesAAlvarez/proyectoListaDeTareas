@@ -6,23 +6,32 @@ import { TiDocumentAdd } from "react-icons/ti";
 
 
 
-function TaskForm() {
+const TaskForm=({task,setTask})=> {
+
+  const handleChange = e =>{
+      setTask({
+        [e.target.name]: e.target.value
+      })
+  }
+
+
+
   return (
-  <div>
-     
-       <form className="form-crear">
-         <input type="text" className="input-crear" name= "description" value="" />
-         <button className="btn-crear"type="submit"><TiDocumentAdd /></button>
-         <button className="btn-edit"type="submit"><FaRegEdit /></button>
-       </form>
-    
-    {/*    <form className="form-edit">
-         <input type="text" className="input-edit" name= "description" value="" />
-        
-       </form>
-         */}
-     
-  </div>
+  <form>
+     <div className="mb-3">
+      <label htmlFor='title'  className="form-label">Title</label>
+      <input name="title" onChange={handleChange} type="text" id="title" className="form-control" />
+     </div>
+     <div className="mb-3">
+      <label htmlFor='description'  className="form-label">Description</label>
+      <input name="description" onChange={handleChange} type="text" id="description" className="form-control" />
+     </div>
+     <div className="mb-3">
+      <label htmlFor='completed'  className="form-label">Completed</label>
+      <input name="completed" onChange={handleChange} type="text" id="completed" className="form-control" />
+     </div>
+     <button className="btn btn-primary" type="submit">Enviar</button>
+  </form>
   )
 }
 

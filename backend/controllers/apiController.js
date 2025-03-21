@@ -1,11 +1,11 @@
-let tasks = [
-    {
-    "id":1,
-    "title":"Aprender Python",
-    "description":"No se,es un curso genial,probalo",
-    "completed": false
-}
-];
+
+const fs = require('fs')
+const path = require('path')
+const tasks = require('../data/tasks.json')
+const guardar = (dato) => fs.writeFileSync(path.join(__dirname, '../data/productos.json'), JSON.stringify(dato, null, 2), 'utf-8')
+
+
+
 
 module.exports = {
     taskList: (req, res) => {
@@ -23,10 +23,11 @@ module.exports = {
             id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
             title,
             description,
-            completed:completed,
+            completed:false,
             createAt: new Date()
             };
         tasks.push(taskNueva);
+        guardar(tasks)
         return res.status(201).json(taskNueva);
     },
     taskUpdate: (req, res) => {
@@ -46,6 +47,8 @@ module.exports = {
         tasks[taskId].description = description
         tasks[taskId].completed = completed
         
+
+        guardar(tasks)
        /*  console.log("Tarea actualizada:", taskId); */
         return res.json(tasks[taskId]);
     },
