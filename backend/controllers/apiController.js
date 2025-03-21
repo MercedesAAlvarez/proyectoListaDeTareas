@@ -1,4 +1,11 @@
-let tasks = [];
+let tasks = [
+    {
+    "id":1,
+    "title":"Aprender Python",
+    "description":"No se,es un curso genial,probalo",
+    "completed": false
+}
+];
 
 module.exports = {
     taskList: (req, res) => {

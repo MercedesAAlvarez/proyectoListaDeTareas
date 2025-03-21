@@ -1,23 +1,13 @@
 
-import React, {useEffect, useState} from "react";
-import {LInk} from "react-router-dom";
-import TaskItem from "./TaskItem";
+import TaskItem from '../components/TaskItem'
+import React from 'react'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ export const TaskList = () => {
+  return (
+    <ul>  
+       <TaskItem/>
+    </ul>
+  )
+}
 
 export default TaskList;
