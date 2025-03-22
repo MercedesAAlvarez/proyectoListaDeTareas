@@ -10,34 +10,42 @@ function App() {
 
   const [task,setTask] = useState(
     {
+     
       title:'',
       description:'',
-      completed:''
+      completed:'No'
     }
   )
   const [tasks, setTasks] = useState([])
 
+  const [tasksUpdate, setTaskUpdate] = useState(false)
+  
+
+  
+
   useEffect(() => {
     const getTasks = () => {
-      fetch('http://localhost:3017/api')
-      .then(res => res,json())
+      fetch(`${import.meta.env.VITE_API_URL}/tasks`)
+      .then(res => res.json())
       .then(res => setTasks(res))
+      .catch((error) => conso0le.error("Error:",error))
    }
     getTasks()
-  }, [])
+    setTaskUpdate(false)
+  }, [tasksUpdate])
 
   return (
     <Fragment>
       <Navbar brand='Manager Task' />
-      <div classname="container">
+      <div className="container">
         <div className="row">
           <div className="col-5">
             <h2 style={{ textAlign: 'center' }}>Lista de tareas</h2>
-            <TaskList tasks={tasks} />
+            <TaskList task={task} setTask={setTask} tasks={tasks}  setTaskUpdate = {setTaskUpdate}/>
           </div>
           <div className="col-5">
             <h2 style={{ textAlign: 'center' }}>Formulario de tareas</h2>
-            <TaskForm task={task} setTask={setTask} />
+            <TaskForm task={task} setTask={setTask}  />
           </div>
 
         </div>

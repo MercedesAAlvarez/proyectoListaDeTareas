@@ -1,8 +1,8 @@
 
 const fs = require('fs')
 const path = require('path')
-const tasks = require('../data/tasks.json')
-const guardar = (dato) => fs.writeFileSync(path.join(__dirname, '../data/productos.json'), JSON.stringify(dato, null, 2), 'utf-8')
+let tasks = require('../data/tasks.json')
+const guardar = (dato) => fs.writeFileSync(path.join(__dirname, '../data/tasks.json'), JSON.stringify(dato, null, 2), 'utf-8')
 
 
 
@@ -60,7 +60,7 @@ module.exports = {
             return res.status(404).json({ error: 'No se ha encontrado la tarea solicitada o no existe' });
         }
 
-        tasks = taskDel;
+        guardar(taskDel);
         return res.status(200).json({ message: 'La tarea fue eliminada exitosamente' });
     }
 };

@@ -1,21 +1,14 @@
 [
- {
+  {
     "id": 1,
-    "title": "Aprende Power BI",
-    "description": "Masterclass acelerador de carrera con PowerBI",
-    "completed": "completado"
- },
- {
-    "id": 2,
     "title": "Aprende Python",
     "description": "Un curso muy completo",
     "completed": false
- },
- {
-    "id": 3,
-    "title": "Aprende Marketing Digital",
-    "description": "Aprende todo sobre el marketing aplicado a las redes sociales",
-    "completed": "completado"
- }
-
+  },
+  {
+    "id": 2,
+    "title": "algo",
+    "description": "Un curso muy completo",
+    "completed": false
+  }
 ]
