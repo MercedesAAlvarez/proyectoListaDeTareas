@@ -23,7 +23,7 @@ const TaskList = ({ tasks = [],handleDelete,handleSelect}) => {
         ) : (
           <tr>
             <td colSpan="5" style={{textAlign:"center"}}>
-              No hay tareas disponibles
+              No hay tareas disponibles.Refresca la página.
             </td>
           </tr>
         )}
